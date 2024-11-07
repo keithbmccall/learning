@@ -14,31 +14,26 @@ const partition = (arr: number[], loIndex: number, hiIndex: number) => {
     //     3,4,2,5,1, < 6 >,7,8,9 **
     //               d
     // select pivot
+    //     pick last element loop through array comparing values. when lower we will swap the element with a pointer that is rising from -1. this pointer rises when we encounter a match
     const pivot = arr[hiIndex];
-    // init index as -1
-    let index = loIndex - 1;
-    //     loop through comparing each number to pivot
-    //     if higher do nothing
-    //     if lower we want to increase index (to keep track of the last known lowest number)
-    //     then we will swap the lower number and the number at the index
+    let swapIndex = loIndex - 1; // -1
     for (let i = loIndex; i < hiIndex; i++) {
+        // never include pivot in this loop
         if (arr[i] < pivot) {
-            index++;
+            swapIndex++;
             const temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
+            arr[i] = arr[swapIndex];
+            arr[swapIndex] = temp;
         }
     }
-    //     after all numbers are evaluated - we want to place pivot number at the right of last known lowest nuber
-    index++;
-    arr[hiIndex] = arr[index];
-    arr[index] = pivot;
-    return index; // index now reps the index of the pivot
+    swapIndex++;
+    arr[hiIndex] = arr[swapIndex];
+    arr[swapIndex] = pivot;
+    return swapIndex;
 };
 const qs = (arr: number[], loIndex: number, hiIndex: number) => {
     if (loIndex >= hiIndex) return;
     const pivotIndex = partition(arr, loIndex, hiIndex);
-    //     take the pivot and run the quick sort on either side of it
     qs(arr, loIndex, pivotIndex - 1);
     qs(arr, pivotIndex + 1, hiIndex);
 };
