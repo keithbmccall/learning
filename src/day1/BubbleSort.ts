@@ -16,17 +16,13 @@ export default function bubble_sort(arr: number[]): void {
         // IE.. on the 3rd iteration we dont need to check the prev high number that we just placed at the end on the 2nd iteration
         // IE.. on the 8th iteration we dont need to check the prev high number that we just placed at the end on the 47th iteration
         // (arr.length - 1 - i) the -1 covers this offset. the index is the counter that counts us backward from end
-        for (let j = 0; j<arr.length - 1 - i;j++){
-            if (arr[j] > arr[j+1]){
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
                 const temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
     }
 }
-
-// loop over arr.length times ->
-// each time compare 2 adjacent numbers keeping higher number on right
-// after arr.length times the array will be sorted
-[5,2,4,6,8,1,13]
+// O(n2)
