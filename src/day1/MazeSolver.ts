@@ -1,82 +1,94 @@
-const directions = [
-    [1, 0],
+const dir = [
     [0, 1],
-    [-1, 0],
+    [1, 0],
     [0, -1],
+    [-1, 0],
 ];
 const walk = (
     maze: string[],
     wall: string,
     curr: Point,
     end: Point,
-    visited: boolean[][],
+    seen: boolean[][],
     path: Point[],
 ): boolean => {
-    //  recursively traverse the node. DFS
-    // in a given direction, at every point we will try to travel
-    // we can't we will take a step back then try a different direction
-    // for the case of having to go over several visited points
-    // the visited case will return false - and that specific recurse call
-    // will then try to travel in a different direction
+    // move through map in a direction, building a visited array.
+    // this is like traversing a tree, in a depth first search
+    // when we get a dead end, we have to move backwards
+    //
+    // Y is representing each array item
+    // X is representing each item in any array item
+    // are we fin
     if (curr.x === end.x && curr.y === end.y) {
-        path.push(curr);
+        path.push(end);
         return true;
     }
-
-    // if wall or off board
+    //     off the map
     if (
-        maze[curr.y][curr.x] === wall ||
         curr.x < 0 ||
         curr.x >= maze[0].length ||
         curr.y < 0 ||
-        curr.y >= maze[0].length
+        curr.y >= maze.length
     ) {
         return false;
     }
-    // if visited
-    if (visited[curr.y][curr.x]) {
+    //     on wall
+    if (maze[curr.y][curr.x] === wall) {
         return false;
     }
 
-    visited[curr.y][curr.x] = true;
+    // have we been here
+    if (seen[curr.y][curr.x]) {
+        return false;
+    }
+    seen[curr.y][curr.x] = true;
     path.push(curr);
-
-    // we need to move around the directional board in an arbitrary order
-    for (let i = 0; i < directions.length; i++) {
-        const [x, y] = directions[i];
+    for (let i = 0; i < dir.length; i++) {
+        const [x, y] = dir[i];
         if (
             walk(
                 maze,
                 wall,
-                { x: curr.x + x, y: curr.y + y },
+                {
+                    x: curr.x + x,
+                    y: curr.y + y,
+                },
                 end,
-                visited,
+                seen,
                 path,
             )
         ) {
+            console.log({ path });
             return true;
         }
     }
-    // stack
     path.pop();
     return false;
 };
+
+// Establish base cases:
+//  1. avoid wall - walls are #
+//  2. off the map - undefined point
+//  3. its the end - we're done
+//  4. if we've already been here - dont want to backtrack
+// [    MazeGraph
+//     "#######E#",
+//     "#       #",
+//     "#S#######"
+// ]
+
 export default function solve(
     maze: string[],
     wall: string,
     start: Point,
     end: Point,
 ): Point[] {
-    // the path to the point
+    const seen: boolean[][] = [];
     const path: Point[] = [];
-    // this will symbolize whether we visited these nodes before
-    const visited: boolean[][] = [];
 
-    // make a maze of false values for convenience
     for (let i = 0; i < maze.length; i++) {
-        visited.push(new Array(maze[0].length).fill(false));
+        seen.push(new Array(maze[0].length).fill(false));
     }
-
-    walk(maze, wall, start, end, visited, path);
+    walk(maze, wall, start, end, seen, path);
     return path;
 }
