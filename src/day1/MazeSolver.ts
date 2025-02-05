@@ -15,54 +15,46 @@ const walk = (
     // move through map in a direction, building a visited array.
     // this is like traversing a tree, in a depth first search
     // when we get a dead end, we have to move backwards
+    // then try diff direction
     //
     // Y is representing each array item
     // X is representing each item in any array item
     // are we fin
     if (curr.x === end.x && curr.y === end.y) {
-        path.push(end);
+        path.push(curr);
         return true;
     }
-    //     off the map
+
+    // if we go off the board or if we hit a wall
     if (
         curr.x < 0 ||
-        curr.x >= maze[0].length ||
         curr.y < 0 ||
-        curr.y >= maze.length
+        curr.x >= maze[0].length ||
+        curr.y >= maze[0].length ||
+        maze[curr.y][curr.x] === wall
     ) {
         return false;
     }
-    //     on wall
-    if (maze[curr.y][curr.x] === wall) {
-        return false;
-    }
 
-    // have we been here
+    // if we've been here before
     if (seen[curr.y][curr.x]) {
         return false;
     }
-    seen[curr.y][curr.x] = true;
+
     path.push(curr);
+    seen[curr.y][curr.x] = true;
+    // loop thru each direction and walk in that direction DFS
+    // we are walking down this tree. when we encounter false
+    // we backtrack, 1 step then try another direction.
     for (let i = 0; i < dir.length; i++) {
         const [x, y] = dir[i];
         if (
-            walk(
-                maze,
-                wall,
-                {
-                    x: curr.x + x,
-                    y: curr.y + y,
-                },
-                end,
-                seen,
-                path,
-            )
+            walk(maze, wall, { x: curr.x + x, y: curr.y + y }, end, seen, path)
         ) {
-            console.log({ path });
             return true;
         }
     }
-    path.pop();
+
     return false;
 };
 
@@ -85,7 +77,7 @@ export default function solve(
 ): Point[] {
     const seen: boolean[][] = [];
     const path: Point[] = [];
-
+    // create a maze of booleans for seen
     for (let i = 0; i < maze.length; i++) {
         seen.push(new Array(maze[0].length).fill(false));
     }
