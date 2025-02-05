@@ -11,7 +11,7 @@ export default function bs_list(haystack: number[], needle: number): boolean {
     do {
         const m = Math.floor(lo + (hi - lo) / 2); //midpoint index of the array
         const v = haystack[m]; //midpoint of the array
-        console.log({v})
+        console.log({ v });
         if (needle === v) {
             return true;
         } else if (needle > v) {
@@ -19,11 +19,10 @@ export default function bs_list(haystack: number[], needle: number): boolean {
             // plus 1 because we are now going to check higher numbers from m -> hi
             // plus 1 we already checked m at line 14!
         } else {
-            hi = m
+            hi = m;
             // minus 1 because we are now going to check lower numbers from lo -> m
             // minus 1 because we already checked m at line 14!
         }
-
     } while (lo < hi);
 
     return false;
@@ -32,4 +31,6 @@ export default function bs_list(haystack: number[], needle: number): boolean {
 // low exclusive
 // hinlexx
 // lexhin
-
+console.log(Array(5).fill(false));
+const row = Array(5).fill(false);
+console.log(Array.from({ length: 4 }, () => Array(5).fill(false)));
