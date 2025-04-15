@@ -1,7 +1,9 @@
+import { MyPromise } from "../../scratch/promise";
+
 export default async function promiseAll(
     promises: (Promise<any> | any)[],
 ): Promise<any[]> {
-    return await new Promise((resolve, reject) => {
+    return await new MyPromise((resolve, reject) => {
         if (!promises?.length) {
             // edge case
             resolve([]);
