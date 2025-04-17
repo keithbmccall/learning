@@ -1,13 +1,13 @@
 class MyPromise {
     constructor(handler) {
-        this.status = "pending"// fulfilled rejected
+        this.status = "pending"; // fulfilled rejected
         this.value = undefined;
         this.reason = undefined;
         this.onFulfilledCallbacks = [];
         this.onRejectedCallbacks = [];
 
         const resolve = (value) => {
-            console.log({value})
+            console.log({ value });
             if (this.status === "pending") {
                 this.status = "fulfilled";
                 this.value = value;
@@ -47,7 +47,7 @@ class MyPromise {
 
     then(onFulfilled, onRejected) {
         const thenPromise = new MyPromise((resolve, reject) => {
-           if (this.status === "fulfilled") {
+            if (this.status === "fulfilled") {
                 // reoslve
                 this.resolveOrReject(
                     thenPromise,
@@ -84,7 +84,7 @@ class MyPromise {
             }
         });
 
-        return thenPromise
+        return thenPromise;
     }
 
     catch(onRejected) {
@@ -107,7 +107,7 @@ console.log(
                     console.log("secnd promise finished");
                     resolve(data + " How are you?");
                 }, 3000);
-            })
+            });
         })
         .then((data) => {
             console.log(data); // "Hellooo, world! How are you?" printed after another 3 seconds
@@ -122,3 +122,4 @@ console.log(
             console.log("Error:", err);
         }),
 );
+
