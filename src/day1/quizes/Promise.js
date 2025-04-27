@@ -1,24 +1,23 @@
 class MyPromise {
     constructor(handler) {
-        this.status = "pending"; // fulfilled rejected
+        this.status = "pending";
         this.value = undefined;
         this.reason = undefined;
         this.onFulfilledCallbacks = [];
         this.onRejectedCallbacks = [];
 
         const resolve = (value) => {
-            console.log({ value });
             if (this.status === "pending") {
                 this.status = "fulfilled";
                 this.value = value;
-                this.onFulfilledCallbacks.forEach((func) => func());
+                this.onFulfilledCallbacks.forEach((cb) => cb());
             }
         };
-
         const reject = (reason) => {
             if (this.status === "pending") {
                 this.status = "rejected";
-                this.onRejectedCallbacks.forEach((func) => func());
+                this.reason = reason;
+                this.onRejectedCallbacks.forEach((cb) => cb());
             }
         };
 
@@ -28,11 +27,11 @@ class MyPromise {
             reject(e);
         }
     }
-    resolveOrReject(promise, promiseHandler, resolve, reject) {
+    resolveOrRejectPromise(promise, promiseHandler, resolve, reject) {
         setTimeout(() => {
             try {
                 if (promise === promiseHandler) {
-                    return reject(new TypeError("Circlar reference detected!"));
+                    return reject(new TypeError("curclar refe"));
                 }
                 if (promiseHandler instanceof MyPromise) {
                     promiseHandler.then(resolve, reject);
@@ -44,29 +43,28 @@ class MyPromise {
             }
         }, 0);
     }
-
-    then(onFulfilled, onRejected) {
+    then(onFulfilled, onReject) {
         const thenPromise = new MyPromise((resolve, reject) => {
             if (this.status === "fulfilled") {
-                // reoslve
-                this.resolveOrReject(
+                //     resolve
+                this.resolveOrRejectPromise(
                     thenPromise,
                     onFulfilled(this.value),
                     resolve,
                     reject,
                 );
             } else if (this.status === "rejected") {
-                // reject
-                this.resolveOrReject(
+                //    reject
+                this.resolveOrRejectPromise(
                     thenPromise,
-                    onRejected(this.reason),
+                    onReject(this.reason),
                     resolve,
                     reject,
                 );
             } else {
-                // queue up both
+                // add this promise to the fulfilled and reject
                 this.onFulfilledCallbacks.push(() =>
-                    this.resolveOrReject(
+                    this.resolveOrRejectPromise(
                         thenPromise,
                         onFulfilled(this.value),
                         resolve,
@@ -74,21 +72,20 @@ class MyPromise {
                     ),
                 );
                 this.onRejectedCallbacks.push(() =>
-                    this.resolveOrReject(
+                    this.resolveOrRejectPromise(
                         thenPromise,
-                        onRejected(this.reason),
+                        onReject(this.reason),
                         resolve,
                         reject,
                     ),
                 );
             }
         });
-
         return thenPromise;
     }
 
-    catch(onRejected) {
-        this.then(undefined, onRejected);
+    catch(onReject) {
+        this.then(undefined, onReject);
     }
 }
 
@@ -122,4 +119,3 @@ console.log(
             console.log("Error:", err);
         }),
 );
-
