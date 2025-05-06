@@ -32,6 +32,22 @@ Data storage is foundational. Weigh **schema flexibility**, **transaction suppor
 
 **Further Reading**: [Difference Between SQL and NoSQL (GeeksforGeeks)](https://www.geeksforgeeks.org/difference-between-sql-and-nosql/)
 
+### When to Choose SQL?
+SQL databases are well-suited for use cases where:
+
+- Data consistency and transactional integrity are critical (e.g., banking systems, customer relationship management).
+- The application needs a well-defined schema and structured data.
+- Complex queries and relational data are involved.
+- Applications requiring multi-row transactions (such as inventory management) benefit from SQL’s robust features.
+
+### When to Choose NoSQL?
+NoSQL databases are a better choice when:
+
+- You need to handle large, unstructured data sets, like social media data or logs.
+- The application requires horizontal scalability to accommodate high traffic and big data.
+- There is a need for real-time data processing and flexible data models (e.g., a content management system).
+- You are dealing with applications requiring frequent changes in data structures.
+
 ---
 
 ## 3. Scaling

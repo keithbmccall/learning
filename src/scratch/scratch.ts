@@ -95,3 +95,25 @@ console.log(store.add("age", 28));
 // Trigger the change event above
 store.add("age", 45);
 console.log(store.handlers.get("change"));
+
+Array.prototype.bloo = function () {
+    return this.map((item: number | string) => {
+        if (typeof item === "string" || typeof item === "number") {
+            const num = typeof item === "number" ? item : Number(item);
+            const log = Math.round(Math.log(num));
+            const log2 = Math.round(Math.log2(num));
+            const sqrt = Math.round(Math.sqrt(num));
+            return {
+                log2,
+                log,
+                sqrt,
+                num,
+            };
+        } else {
+            throw new Error("we only accept numbers or strings here");
+        }
+    });
+};
+const smack = ["32", "24", 52, 7, "37"];
+const gob = smack.bloo();
+console.log(gob);
