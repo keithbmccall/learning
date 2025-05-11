@@ -1,0 +1,19 @@
+.input-autocomplete {
+    margin: 20px 10px 20px 10px;
+}
+
+.text {
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.suggestions-box {
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    color: #0e0d0d;
+    border-radius: 3px;
+}
+
+.active {
+    background-color: #bdabab;
+}
