@@ -414,7 +414,7 @@ Horizontal scaling. We can add more API servers to handle more load.
 High Availability. Whenever we need to upgrade or restart our API servers, we can perform a rolling restart. This means that only one node would go down at a time, while others continue to serve requests. That’s how you normally are able to upgrade logic in these systems without taking downtime.
 There are different strategies for deciding how to balance load across a set of servers, but most of the time you’ll be dealing with round robin.
 
-End-to-end example of the process
+## End-to-end example of the process
 Design interviewing.io: A website where people can schedule anonymous technical interviews with other engineers.
 
 Step 1: Requirements
