@@ -169,7 +169,7 @@ Delivery location ambiguity—especially in apartment complexes, gated communiti
 **Learned:**
 - Multi-team coordination and alignment
 - Product/design iteration
-- Deeper understanding of shared component management
+- Deeper understanding different teams and their ways of working
 
 **Would Do Differently:**
 - Identify tech debt blockers early (e.g., deliveryInstructionDetails migration)
