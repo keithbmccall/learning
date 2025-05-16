@@ -33,6 +33,17 @@
 - Drafted architecture doc → signed off by all consumers
 - Used as live API contract throughout development
 - Lat/long fallback call built **into component** (out-of-the-box support)
+- 
+---
+
+### 🧑‍🤝‍🧑 Stakeholder Alignment (in Full Detailed Write-Up)
+
+**Product/Design Collaboration:**
+- Early prototypes featured a dropdown menu attached to each address type, requiring users to select a drop-off location from a dropdown within each selection.
+- I pushed back and recommended breaking this out into **standalone radio button groups** for drop-off locations.
+  - **Reason 1**: Separation more closely aligned with how data was modeled and sent to the frontend — cleaner and more modular.
+  - **Reason 2**: A dropdown nested inside another selector created **extra UX friction**, especially on mobile.
+- Product cross teams agreed, and we implemented the radio-button layout.
 
 ---
 
@@ -164,3 +175,4 @@ Delivery location ambiguity—especially in apartment complexes, gated communiti
 **Would Do Differently:**
 - Identify tech debt blockers early (e.g., deliveryInstructionDetails migration)
 - Pre-plan rollout and compatibility paths better
+
