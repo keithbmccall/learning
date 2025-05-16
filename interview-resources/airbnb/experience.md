@@ -9,7 +9,7 @@
 
 ### 🚨 Business Problem & Metrics
 - $20.8M lost annually due to returns/missing orders
-- 40% caused by unclear address/access issues → $8.32M
+- 40% caused by unclear address and access issues → $8.32M
 - Apartment/Gated returns: 2x higher than single homes
 - Freeform text: confusing (esp. for Spanish-speaking drivers)
 - Post-launch: cut 'can’t access' and 'can’t find' returns **in half**
@@ -22,7 +22,7 @@
 ---
 
 ### 🛠️ Your Role
-- Staff FE + Orchestration Lead (Checkout team)
+- Senior FE + Orchestration Lead (Checkout team)
 - Led frontend architecture + shared component dev
 - Main POC for cross-team coordination
 - Collaborated with design, product, and InHome backend
@@ -33,7 +33,7 @@
 - Drafted architecture doc → signed off by all consumers
 - Used as live API contract throughout development
 - Lat/long fallback call built **into component** (out-of-the-box support)
-- 
+
 ---
 
 ### 🧑‍🤝‍🧑 Stakeholder Alignment (in Full Detailed Write-Up)
@@ -61,7 +61,7 @@
 
 #### 📦 Backend Integrations
 - Conditional orchestration call to InHome during contract creation
-- Pulled additional lat/long from Accounts if not present
+- Pulled additional lat/long from Address service if not present
 
 ---
 
@@ -69,8 +69,7 @@
 - 'Can’t access' returns: **~20% → ~9%**
 - 'Can’t find' returns: **~20% → ~10%**
 - Driver feedback: much improved clarity
-- Checkout conversion unaffected
-- Reusable component leveraged in other delivery-related projects
+- Reusable component available for future delivery-related projects
 - Annual cost savings: **~$4.16M** (estimate)
 
 ---
@@ -85,7 +84,6 @@
 **What I’d Do Differently:**
 - Identify upfront any **outstanding tech debt** from dependent teams  
   → e.g., simultaneous migration of `deliveryInstructionDetails` and feature work created risk
-- Build in earlier risk assessment and sequencing for shared contracts
 
 ---
 
@@ -123,7 +121,7 @@ Delivery location ambiguity—especially in apartment complexes, gated communiti
 
 ### 2. My Role & Collaboration
 
-**Role:** Staff Frontend Engineer & Checkout Tech Lead
+**Role:** Sr Frontend Engineer & Checkout Tech Lead
 
 - Led FE + orchestration layer work
 - Coordinated with 4 engineering stakeholders
@@ -139,16 +137,17 @@ Delivery location ambiguity—especially in apartment complexes, gated communiti
 ### 3. Technical Architecture & Tradeoffs
 
 #### Backend:
-- `createContract` → conditional call to InHome
-- Additional lat/long from Accounts
+- `createContract` → conditional call to InHome in parallel vs sequential
+- Used async parallel calls on page load to maintain perf
+
 
 #### Orchestration Layer:
 - PatchDeliveryAddress: fire-and-forget → response-consumed
-- Sequential fallback: Accounts → InHome
-- Used async parallel calls on page load to maintain perf
+- Sequential call: Accounts → InHome
+
 
 #### Frontend:
-- Consumed orchestration response
+- Consumed orchestration response and display data to customer
 - Integrated shared component into 2 apps
 - Included lat/long fallback query if needed
 
@@ -174,5 +173,5 @@ Delivery location ambiguity—especially in apartment complexes, gated communiti
 
 **Would Do Differently:**
 - Identify tech debt blockers early (e.g., deliveryInstructionDetails migration)
-- Pre-plan rollout and compatibility paths better
+
 
