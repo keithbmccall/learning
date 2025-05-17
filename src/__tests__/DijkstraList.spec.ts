@@ -1,5 +1,5 @@
 import dijkstra_list from "@code/DijkstraList";
-import { list1 } from "./graph";
+import { list1 } from "./helpers/graph";
 
 test("dijkstra via adj list", function () {
     /// waht?

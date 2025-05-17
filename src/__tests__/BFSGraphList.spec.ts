@@ -1,5 +1,5 @@
 import bfs from "@code/BFSGraphList";
-import { list2 } from "./graph";
+import { list2 } from "./helpers/graph";
 
 test("bfs - graph", function () {
     expect(bfs(list2, 0, 6)).toEqual([
