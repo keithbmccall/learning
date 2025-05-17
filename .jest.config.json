@@ -2,8 +2,10 @@
     "clearMocks": true,
     "moduleNameMapper": {
         "@code/(.*)": [
-            "<rootDir>/src/day1/$1"
+            "<rootDir>/src/day1/$1",
+            "<rootDir>/src/quizes/$1"
         ]
     },
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "moduleDirectories": ["node_modules", "<rootDir>"]
 }

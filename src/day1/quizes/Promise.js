@@ -10,14 +10,14 @@ class MyPromise {
             if (this.status === "pending") {
                 this.status = "fulfilled";
                 this.value = value;
-                this.onFulfilledCallbacks.forEach((cb) => cb());
+                this.onFulfilledCallbacks.forEach((cb) => cb(this.value));
             }
         };
         const reject = (reason) => {
             if (this.status === "pending") {
                 this.status = "rejected";
                 this.reason = reason;
-                this.onRejectedCallbacks.forEach((cb) => cb());
+                this.onRejectedCallbacks.forEach((cb) => cb(this.reason));
             }
         };
 
@@ -63,18 +63,18 @@ class MyPromise {
                 );
             } else {
                 // add this promise to the fulfilled and reject
-                this.onFulfilledCallbacks.push(() =>
+                this.onFulfilledCallbacks.push((value) =>
                     this.resolveOrRejectPromise(
                         thenPromise,
-                        onFulfilled(this.value),
+                        onFulfilled(value),
                         resolve,
                         reject,
                     ),
                 );
-                this.onRejectedCallbacks.push(() =>
+                this.onRejectedCallbacks.push((reason) =>
                     this.resolveOrRejectPromise(
                         thenPromise,
-                        onReject(this.reason),
+                        onReject(reason),
                         resolve,
                         reject,
                     ),

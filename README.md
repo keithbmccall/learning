@@ -1,3 +1,125 @@
+# Kata Machine
+
+A comprehensive collection of coding exercises (katas) and algorithm implementations for practicing technical interview preparation and improving algorithmic thinking.
+
+## 🎯 Purpose
+
+This repository serves as a structured learning environment for practicing common programming challenges, data structures, and algorithms. It's designed to help developers:
+
+- Prepare for technical interviews
+- Master fundamental data structures and algorithms
+- Practice problem-solving skills
+- Learn test-driven development (TDD)
+
+## 🛠 Features
+
+- Comprehensive test suite for each kata
+- TypeScript implementation
+- Jest testing framework
+- Automated test running and validation
+- Built-in prettier configuration for consistent code formatting
+
+## 📚 Included Katas
+
+The repository includes implementations and tests for various algorithms and data structures:
+
+### Data Structures
+- Singly Linked List
+- Doubly Linked List
+- Queue
+- Stack
+- ArrayList
+- Binary Trees
+- Trie
+- Min Heap
+- Map
+
+### Algorithms
+- Linear Search
+- Binary Search
+- Two Crystal Balls Problem
+- Bubble Sort
+- Quick Sort
+- Maze Solver
+- DFS (Depth-First Search)
+  - On Binary Search Trees
+  - On Graphs
+- BFS (Breadth-First Search)
+  - On Binary Trees
+  - On Graph Matrix
+- Binary Tree Traversals
+  - Pre-order
+  - In-order
+  - Post-order
+
+## 🚀 Getting Started
+
+1. **Install Dependencies**
+   ```bash
+   yarn install
+   ```
+
+2. **Run Tests**
+   ```bash
+   yarn test
+   ```
+
+3. **Format Code**
+   ```bash
+   yarn prettier
+   ```
+
+## 📝 Scripts
+
+- `yarn test` - Run tests for all implemented katas
+- `yarn clear` - Clear previous implementations
+- `yarn prettier` - Format code using prettier
+- `yarn generate` - Generate new kata templates
+- `yarn day` - Show current day's exercises
+- `yarn autocompletion` - Run autocompletion tools
+
+## 🔧 Technical Stack
+
+- TypeScript
+- Jest for testing
+- Prettier for code formatting
+- Custom test runners and generators
+
+## 📚 Additional Resources
+
+### Autocompletion Project
+The `autocompletion` directory contains a standalone TypeScript application that provides:
+- Interactive typing practice with autocompletion features
+- Real-time feedback on typing accuracy and speed
+- Modern Vite-based development environment
+- TypeScript implementation with strict type checking
+
+To run the autocompletion practice tool:
+```bash
+yarn autocompletion
+```
+
+### Interview Resources
+The `interview-resources` directory contains comprehensive preparation materials:
+- System design interview preparation guides and examples
+- Behavioral interview questions and strategies
+- Company-specific interview preparation materials (e.g., Airbnb)
+- Best practices and common patterns for different interview types
+
+These resources complement the kata exercises by providing:
+- Real-world system design scenarios
+- Behavioral interview preparation
+- Company-specific interview formats and expectations
+- Holistic interview preparation strategy
+
+## 📄 License
+
+MIT
+
+---
+
+Happy coding! 🚀
+
 ## Developed live on twitch
 [ThePrimeagen](https://twitch.tv/ThePrimeagen)
 
