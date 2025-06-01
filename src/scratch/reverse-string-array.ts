@@ -23,7 +23,10 @@ const input = [
   "e",
 ];
 
-const reverseThisStringArray = (stringArray: string[]): string[] => {
+const reverseThisStringArray = (stringArray: string[]): {
+  array: string[];
+  string: string;
+} => {
   let result: string[] = [];
   let tempWord: string[] = [];
   for (let i = 0; i < stringArray.length; i++) {
@@ -36,8 +39,10 @@ const reverseThisStringArray = (stringArray: string[]): string[] => {
     }
   }
   result = [...tempWord, ...result];
-
-  return result;
+  return {
+    array: result,
+    string: result.join(""),
+  }
 };
 
-console.log(reverseThisStringArray(input));
+console.log(reverseThisStringArray(input).string);
