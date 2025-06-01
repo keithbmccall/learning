@@ -44,8 +44,9 @@ export const CardMatching = ({ matchTarget = 2 }: { matchTarget?: number }) => {
             if (hasMatch) {
                 setCards(
                     cards.map((card, index) => {
-                        if (cardsMap[index])
+                        if (cardsMap[index]) {
                             return { ...card, isMatched: true };
+                        }
                         return card;
                     }),
                 );
