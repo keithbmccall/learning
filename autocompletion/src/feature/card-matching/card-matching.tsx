@@ -1,56 +1,47 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import "./card-matching.css";
 
 const cardTypes = ["🐶", "🦊", "🐱", "🐭", "🐻", "🐼", "🐷", "🦁"];
 
-const shuffleCards = (cards: string[]) => {
-    // Shuffle the array using the Fisher-Yates algorithm
-    const shuffledCards = cards.flatMap((card) => [
-        { card, isMatched: false },
-        { card, isMatched: false },
-    ]);
+export const CardMatching = ({ matchTarget = 2 }: { matchTarget?: number }) => {
+    const [cardsMap, setCardsMap] = useState<Record<number, boolean>>({});
+    const [faceUpCards, setFaceUpCards] = useState<number[]>([]);
+    const [cards, setCards] = useState<
+        Array<{ card: string; isMatched: boolean }>
+    >([]);
 
-    for (let i = shuffledCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledCards[i], shuffledCards[j]] = [
-            shuffledCards[j],
-            shuffledCards[i],
-        ];
-    }
-
-    return shuffledCards;
-};
-
-const _cards = shuffleCards(cardTypes);
-
-export const CardMatching = () => {
-    const [cardsMap, setCardsMap] = useState<Record<string, boolean>>({});
-    const [cards, setCards] = useState(_cards);
-    const [disabled, setDisabled] = useState(false);
-
-    const flipCard = (cardIndex: number) => {
-        setCardsMap({
-            ...cardsMap,
-            [cardIndex]: true,
-        });
-    };
     useEffect(() => {
-        setDisabled(true);
-        const faceUpCards: number[] = [];
-        const faceUpCount = Object.keys(cardsMap).reduce((count, cardIndex) => {
-            const bool = cardsMap[cardIndex];
-            if (bool) {
-                faceUpCards.push(cardIndex);
-                return count + 1;
-            }
-            return count;
-        }, 0);
+        const shuffleCards = (cards: string[]) => {
+            // Shuffle the array using the Fisher-Yates algorithm
+            const shuffledCards = cards.flatMap((card) => {
+                const blankCards: Array<{ card: string; isMatched: boolean }> =
+                    [];
+                for (let i = 0; i < matchTarget; i++) {
+                    blankCards.push({ card, isMatched: false });
+                }
+                return blankCards;
+            });
 
-        if (faceUpCount >= 2) {
-            const matches = faceUpCards.every((cardIndex) => {
+            for (let i = shuffledCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledCards[i], shuffledCards[j]] = [
+                    shuffledCards[j],
+                    shuffledCards[i],
+                ];
+            }
+
+            return shuffledCards;
+        };
+        setCards(shuffleCards(cardTypes));
+    }, [matchTarget]);
+
+    useEffect(() => {
+        const faceUpCount = faceUpCards.length;
+        if (faceUpCount >= matchTarget) {
+            const hasMatch = faceUpCards.every((cardIndex) => {
                 return cards[faceUpCards[0]].card === cards[cardIndex].card;
             });
-            if (matches) {
+            if (hasMatch) {
                 setCards(
                     cards.map((card, index) => {
                         if (cardsMap[index])
@@ -59,30 +50,47 @@ export const CardMatching = () => {
                     }),
                 );
                 setCardsMap({});
+                setFaceUpCards([]);
             } else {
-                setTimeout(() => {
+                const timeout = setTimeout(() => {
                     setCardsMap({});
+                    setFaceUpCards([]);
                 }, 1000);
+                return () => clearTimeout(timeout);
             }
         }
-        setDisabled(false);
-    }, [cardsMap]);
+    }, [faceUpCards, cardsMap, cards, matchTarget]);
+
+    const isAllDisabled = faceUpCards.length >= matchTarget;
+
+    const onFlipCard = (e: MouseEvent<HTMLDivElement>) => {
+        const { isFlipped, index } = e.currentTarget.dataset;
+        const cardIndex = parseInt(index || "");
+        const isNumber = Number.isInteger(cardIndex);
+        if (!isAllDisabled && isFlipped !== "true" && isNumber) {
+            setCardsMap({
+                ...cardsMap,
+                [cardIndex]: true,
+            });
+            setFaceUpCards([...faceUpCards, cardIndex]);
+        }
+    };
 
     return (
         <div>
             <h2>Card Matching Game</h2>
             <div className="card-table">
                 {cards.map(({ card, isMatched }, index) => {
-                    const isFlipped = isMatched || cardsMap[index];
+                    const isFlipped = isMatched || cardsMap[index] || false;
                     return (
                         <div
                             key={index}
+                            data-index={index.toString()}
+                            data-isFlipped={isFlipped.toString()}
                             className={`card ${
                                 isFlipped ? "card-flipped" : ""
                             }`}
-                            onClick={() => {
-                                if (!isFlipped || !disabled) flipCard(index);
-                            }}
+                            onClick={onFlipCard}
                         >
                             {isFlipped ? card : "A"}
                         </div>

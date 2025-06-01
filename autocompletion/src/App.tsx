@@ -28,7 +28,7 @@ function App() {
                     count is {count}
                 </button>
                 <InputAutocomplete />
-                <CardMatching />
+                <CardMatching matchTarget={2} />
             </div>
         </>
     );
