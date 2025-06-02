@@ -1,6 +1,15 @@
 import "./input-autocomplete.css";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
+interface SuggestionMeta {
+    display_name: string;
+    id: string | number;
+}
+
+interface Suggestion {
+    meta: SuggestionMeta;
+}
+
 const options = {
     method: "GET",
     headers: {
@@ -10,13 +19,13 @@ const options = {
     },
 };
 
-const defaultSuggestions: unknown[] = [];
+const defaultSuggestions: Suggestion[] = [];
 export const InputAutocomplete = () => {
     const [inputValue, setInputValue] = useState("");
     const [suggestions, setSuggestions] =
-        useState<unknown[]>(defaultSuggestions);
+        useState<Suggestion[]>(defaultSuggestions);
     const [activeSuggestion, setActiveSuggestion] = useState(-1);
-    const [cache, setCache] = useState<Record<string, unknown[]>>({});
+    const [cache, setCache] = useState<Record<string, Suggestion[]>>({});
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     console.log(cache);
     useEffect(() => {
@@ -34,13 +43,14 @@ export const InputAutocomplete = () => {
                 )
                     .then((res) => res.json())
                     .then((res) => {
+                        const typedData = res.data as Suggestion[];
                         setCache((_cache) => {
                             return {
                                 ..._cache,
-                                [inputValue]: res.data,
+                                [inputValue]: typedData,
                             };
                         });
-                        setSuggestions(res.data);
+                        setSuggestions(typedData);
                     });
             }, 300);
         }
