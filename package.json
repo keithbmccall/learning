@@ -16,11 +16,14 @@
     "scripts": {
         "test": "jest DFSOnBST LRU LinearSearchList BinarySearchList TwoCrystalBalls BubbleSort SinglyLinkedList DoublyLinkedList Queue Stack ArrayList MazeSolver QuickSort BTPreOrder BTInOrder BTPostOrder BTBFS CompareBinaryTrees DFSOnBST DFSGraphList Trie BFSGraphMatrix Map MinHeap",
         "clear": "node ./scripts/clear.js",
-        "prettier": "prettier --write ./src",
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
         "generate": "node ./scripts/generate.js",
         "day": "echo src/day1",
         "push": "git push alt main",
         "autocompletion": "cd autocompletion && yarn start"
     },
-    "packageManager": "yarn@3.4.1+sha512.a333bf9c2557d71f5ba87dd1446cde24bb9c35301ec29dd2baba577b3f9d1ab61348b66a1324de9088c40a996c5b9203794da8bf14cab9fae6a6eccc00cb8078"
+    "packageManager": "yarn@3.4.1+sha512.a333bf9c2557d71f5ba87dd1446cde24bb9c35301ec29dd2baba577b3f9d1ab61348b66a1324de9088c40a996c5b9203794da8bf14cab9fae6a6eccc00cb8078",
+    "devDependencies": {
+        "prettier-plugin-organize-imports": "^4.1.0"
+    }
 }

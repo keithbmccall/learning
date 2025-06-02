@@ -1089,10 +1089,12 @@ __metadata:
     "@types/react": ^19.1.2
     "@types/react-dom": ^19.1.2
     "@vitejs/plugin-react": ^4.4.1
+    classnames: ^2.5.1
     eslint: ^9.25.0
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.19
     globals: ^16.0.0
+    prettier-plugin-organize-imports: ^4.1.0
     react: ^19.1.0
     react-dom: ^19.1.0
     typescript: ~5.8.3
@@ -1242,6 +1244,13 @@ __metadata:
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
   checksum: fd73a4bab48b79e66903fe1cafbdc208956f41ea4f856df883d0c7277b7ab29fd33ee65f93b2ec9192fc0169238f2f8307b7735d27c155821d886b84aa97aa8d
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: da424a8a6f3a96a2e87d01a432ba19315503294ac7e025f9fece656db6b6a0f7b5003bb1fbb51cbb0d9624d964f1b9bb35a51c73af9b2434c7b292c42231c1e5
   languageName: node
   linkType: hard
 
@@ -2771,6 +2780,20 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-organize-imports@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "prettier-plugin-organize-imports@npm:4.1.0"
+  peerDependencies:
+    prettier: ">=2.0"
+    typescript: ">=2.9"
+    vue-tsc: ^2.1.0
+  peerDependenciesMeta:
+    vue-tsc:
+      optional: true
+  checksum: 43c917959170fa3e30e41f9b3bd314a31462ae34e5568b4dba6b1c8b8da758adf900fdf4999333ab2b60b3d1af541f9521396a5e19df03ab5400a50edc9a75f6
   languageName: node
   linkType: hard
 
