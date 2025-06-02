@@ -1,0 +1,37 @@
+.card-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.card {
+    /*
+     * With 4 cards per row (25% width each) and 3 gaps of 10px between them:
+     * Total gap space per row = 3 gaps × 10px = 30px
+     * Each card needs to give up 30px ÷ 4 cards = 7.5px of its width
+     * to account for the gap space
+     */
+    width: calc(25% - 13.5px);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #810000;
+    border-color: #100e0e;
+    border-width: 3px;
+    border-style: solid;
+    color: #0e0d0d;
+    font-weight: bold;
+}
+
+.card-flipped {
+    background-color: #f0f0f0;
+    border-color: #100e0e;
+    font-size: 2rem;
+    cursor: default;
+}
