@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import reactLogo from './assets/react.svg';
-import { CardMatching } from './feature/card-matching/card-matching.tsx';
-import { InputAutocomplete } from './feature/input-autocomplete/input-autocomplete.tsx';
+import { CardMatching } from './features/card-matching/card-matching.tsx';
+import { InputAutocomplete } from './features/input-autocomplete/input-autocomplete.tsx';
 import viteLogo from '/vite.svg';
 
 function App() {
