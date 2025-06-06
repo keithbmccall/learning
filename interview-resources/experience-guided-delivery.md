@@ -1,4 +1,4 @@
-# Guided Delivery Instructions – Interview Walkthrough
+# Guided Delivery Instructions – Notes
 
 ## 🎙️ 60–Second Spoken Summary (Cold Open)
 > “I led the frontend and orchestration work for Walmart’s Guided Delivery Instructions project, targeting high delivery failure rates in apartments and gated communities. These failures were costing the company over $20M annually. My team built a reusable delivery instruction component, integrated across two applications, and coordinated with four teams to align on data contracts and orchestration flows. Post-launch, we saw a 50% reduction in ‘can’t access’ returns and estimated annual savings of over $4 million.”
