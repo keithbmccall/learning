@@ -1,4 +1,25 @@
+node_modules
+dist
+build
+coverage
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
+.eslintcache
+*.log
+
+# Next.js and other outputs
+**/.next
+**/out
+**/.cache
+**/tmp
+
+# Project subpackages
+projects/autocompletion/node_modules
+projects/autocompletion/dist
 node_modules/
 build/
 dist/
 coverage/
+
+.history/
