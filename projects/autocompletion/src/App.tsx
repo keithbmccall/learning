@@ -21,6 +21,7 @@ function App() {
         <StarWars />
         <InputAutocomplete />
         <CardMatching matchTarget={2} />
+        <h2>Virtualized Table</h2>
         <VirtualizedTable />
       </div>
     </>

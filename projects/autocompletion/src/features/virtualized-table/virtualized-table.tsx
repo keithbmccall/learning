@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useRef } from 'react';
-import './virtualized-table.css';
 
 type TableData = {
   id: number;
@@ -69,15 +68,52 @@ export const VirtualizedTable = () => {
   });
 
   return (
-    <div className="virtualized-table-container">
-      <h2>Virtualized Table (20,000 rows)</h2>
-      <div ref={parentRef} className="virtualized-table-scroll-container">
-        <table className="virtualized-table">
-          <thead className="virtualized-table-header">
+    <div style={{ margin: '20px 0', padding: '20px' }}>
+      <h2 style={{ marginBottom: '16px', color: '#333', fontSize: '24px', fontWeight: 600 }}>
+        Virtualized Table (20,000 rows)
+      </h2>
+      <div
+        ref={parentRef}
+        style={{
+          height: '600px',
+          overflow: 'auto',
+          width: '800px',
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <table
+          style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            position: 'relative',
+          }}
+        >
+          <thead
+            style={{
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+              backgroundColor: 'white',
+            }}
+          >
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="virtualized-table-header-cell">
+                  <th
+                    key={header.id}
+                    style={{
+                      height: '70px',
+                      border: '1px solid #ccc',
+                      padding: '8px',
+                      backgroundColor: '#f5f5f5',
+                      fontWeight: 'bold',
+                      textAlign: 'left',
+                      fontSize: '14px',
+                      color: '#333',
+                    }}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -87,8 +123,8 @@ export const VirtualizedTable = () => {
             ))}
           </thead>
           <tbody
-            className="virtualized-table-body"
             style={{
+              position: 'relative',
               height: `${virtualizer.getTotalSize()}px`,
             }}
           >
@@ -97,7 +133,6 @@ export const VirtualizedTable = () => {
               return (
                 <tr
                   key={row.id}
-                  className="virtualized-table-row"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -108,7 +143,17 @@ export const VirtualizedTable = () => {
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="virtualized-table-cell">
+                    <td
+                      key={cell.id}
+                      style={{
+                        height: '70px',
+                        border: '1px solid #ccc',
+                        padding: '8px',
+                        fontSize: '14px',
+                        color: '#555',
+                        backgroundColor: 'white',
+                      }}
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
