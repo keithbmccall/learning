@@ -13,6 +13,8 @@
     "relay": "relay-compiler --src ./src --schema ./schema.graphql --language typescript"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-virtual": "^3.13.12",
     "classnames": "^2.5.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -1,0 +1,89 @@
+.virtualized-table-container {
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.virtualized-table-container h2 {
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.virtualized-table-scroll-container {
+  height: 600px;
+  overflow: auto;
+  width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.virtualized-table {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+}
+
+.virtualized-table-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+.virtualized-table-header-cell {
+  height: 70px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.virtualized-table-body {
+  position: relative;
+}
+
+.virtualized-table-row {
+  /* Styles applied inline for virtualization */
+}
+
+.virtualized-table-cell {
+  height: 70px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+  color: #555;
+  background-color: white;
+}
+
+.virtualized-table-row:nth-child(even) .virtualized-table-cell {
+  background-color: #fafafa;
+}
+
+.virtualized-table-row:hover .virtualized-table-cell {
+  background-color: #e6f3ff;
+}
+
+/* Scrollbar styling */
+.virtualized-table-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.virtualized-table-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.virtualized-table-scroll-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.virtualized-table-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

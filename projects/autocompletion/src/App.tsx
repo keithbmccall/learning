@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import './App.css';
 import reactLogo from './assets/react.svg';
-import { CardMatching } from './features/card-matching/card-matching.tsx';
-import { InputAutocomplete } from './features/input-autocomplete/input-autocomplete.tsx';
+import { CardMatching } from './features/card-matching/card-matching';
+import { InputAutocomplete } from './features/input-autocomplete/input-autocomplete';
+import { StarWars } from './features/relay-testrun/StarWars';
+import { VirtualizedTable } from './features/virtualized-table/virtualized-table';
 import viteLogo from '/vite.svg';
-import { StarWars } from './features/relay-testrun/StarWars.tsx';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
@@ -20,11 +18,10 @@ function App() {
         </a>
       </div>
       <div className="section">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <StarWars />
         <InputAutocomplete />
         <CardMatching matchTarget={2} />
-      
+        <VirtualizedTable />
       </div>
     </>
   );
